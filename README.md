@@ -2,6 +2,14 @@
 # **Predict and search framework**
 Repository for A GNN-Guided Predict-and-Search Framework for Mixed-Integer Linear Programming.
 
+## Tested WSL CA workflow (added September 2026)
+
+See [CA setup, generation, training, and testing](docs/CA_REPRODUCTION.md) and
+[the paper/implementation audit](docs/PAPER_IMPLEMENTATION_AUDIT.md).
+The `predict-search-ca` environment and `ca_workflow.py` provide a tested CA path.
+The original scripts below are preserved for audit and contain known execution errors;
+the released files do not establish exact reproduction of the paper's results.
+
 ## Requirements
 
 Linux

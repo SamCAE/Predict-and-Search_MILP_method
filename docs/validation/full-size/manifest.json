@@ -1,0 +1,183 @@
+{
+  "schema_version": 2,
+  "claim_id": "CA_WSL_BOUNDED_IMPLEMENTATION_CHECK",
+  "repository": {
+    "commit": "02f342af44ba17bfaa92b5c4db0bcbe90fb94151",
+    "dirty": true
+  },
+  "command": [
+    "python",
+    "scripts/validate_full_size.py",
+    "docs/validation/full-size"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.12.14"
+      },
+      {
+        "name": "Python",
+        "version": "3.12.14"
+      },
+      {
+        "name": "PyTorch",
+        "version": "2.6.0+cu124"
+      },
+      {
+        "name": "PyG",
+        "version": "2.6.1"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "Gurobi",
+        "version": "13.0.3"
+      },
+      {
+        "name": "SCIP / PySCIPOpt",
+        "version": "10.0.3 / 6.2.1"
+      },
+      {
+        "name": "Ecole conda / Python metadata",
+        "version": "0.8.2 / 0.8.1"
+      }
+    ],
+    "hardware": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+  },
+  "mathematics": {
+    "assertion_tested": "The added CA pipeline runs on WSL/CUDA; both solvers agree with exhaustive enumeration on a three-variable CA; generated 1500-bid instances produce feasible original-problem incumbents; stable marginal BCE agrees with weighted solution BCE.",
+    "coefficient_domain": "IEEE floating point (float32 GNN; float64 solver/objective arithmetic); binary decision variables",
+    "conventions": "CA maximization; weights softmax(objective/1000); upstream GNN architecture; corrected graph by default; paper CA neighborhood parameters",
+    "inputs": [
+      "Ecole instances: 300 items, 1500 bids, seeds 2700 through 2707",
+      "Three-variable hand-computable model in tests/test_ca_workflow.py"
+    ],
+    "bounds": {
+      "train_instances": 4,
+      "valid_instances": 2,
+      "test_instances": 2,
+      "epochs": 2,
+      "solution_pool_cap": 10,
+      "solver_time_limit_seconds": 3,
+      "label_workers": 2,
+      "solver_threads": 1
+    },
+    "non_claims": [
+      "Does not reproduce the paper's numerical results or original data",
+      "Does not validate untested problem families",
+      "Does not certify global optimality of 1500-bid time-limited solves",
+      "CUDA reductions and time-limited solver paths need not be bitwise deterministic"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "Ecole per-instance seeds 2700-2707; Python/NumPy/PyTorch seed 0 for training/evaluation",
+    "seed": 0
+  },
+  "run": {
+    "started_at": "2026-09-18T16:00:45.817635+00:00",
+    "runtime_seconds": 117.207422,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 600.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "ca_workflow.py",
+    "GCN.py",
+    "helper.py",
+    "models/CA.pth",
+    "tests/test_ca_workflow.py",
+    "scripts/validate_full_size.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "ca_workflow.py",
+      "sha256": "9e1f8ff2ba99d8dc52ab0f4b09c4d93f1939a3b051f49d838c0dfe48bbb6ea29",
+      "sha256_after": "9e1f8ff2ba99d8dc52ab0f4b09c4d93f1939a3b051f49d838c0dfe48bbb6ea29"
+    },
+    {
+      "path": "GCN.py",
+      "sha256": "25f278a28392fb2026273fb36850a9313b2cca8398c0db19df9af7d73ffe3abb",
+      "sha256_after": "25f278a28392fb2026273fb36850a9313b2cca8398c0db19df9af7d73ffe3abb"
+    },
+    {
+      "path": "helper.py",
+      "sha256": "fa9f918e38f93e9748f9ee53ac07ac6b8f748eec4e210409f87c14ef8aa453e2",
+      "sha256_after": "fa9f918e38f93e9748f9ee53ac07ac6b8f748eec4e210409f87c14ef8aa453e2"
+    },
+    {
+      "path": "models/CA.pth",
+      "sha256": "73471504d6e6fb400368230936149a984703d16c8b0607e436289a374b876056",
+      "sha256_after": "73471504d6e6fb400368230936149a984703d16c8b0607e436289a374b876056"
+    },
+    {
+      "path": "tests/test_ca_workflow.py",
+      "sha256": "a7a6677e7984b72245bcec2bc1a6db413e71b69c99bef83d2d79817f63c6dca5",
+      "sha256_after": "a7a6677e7984b72245bcec2bc1a6db413e71b69c99bef83d2d79817f63c6dca5"
+    },
+    {
+      "path": "scripts/validate_full_size.py",
+      "sha256": "1cf69ef0a9c73f377ea88fc4b674d9f0689b68388218fd4446742735f91dcf66",
+      "sha256_after": "1cf69ef0a9c73f377ea88fc4b674d9f0689b68388218fd4446742735f91dcf66"
+    }
+  ],
+  "output_directory": "docs/validation/full-size",
+  "declared_results": [
+    "docs/validation/full-size/tests.xml",
+    "docs/validation/full-size/summary.json"
+  ],
+  "outputs": [
+    {
+      "path": "docs/validation/full-size/stdout.txt",
+      "sha256": "06ed5d7dde23f481d5b892b125a3c169a6e18f80022dd9c0c77129247ef76757",
+      "kind": "log"
+    },
+    {
+      "path": "docs/validation/full-size/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "docs/validation/full-size/tests.xml",
+      "sha256": "1962a0e893cecb6f69b7487e7abda19557aa67b1c3118dcb2681a8c1380c0fb0",
+      "kind": "result"
+    },
+    {
+      "path": "docs/validation/full-size/summary.json",
+      "sha256": "18d7c3f8d7f44f1dc144e9f6f0ffb4faf41e4e49d639c69a82d00eec755455f4",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

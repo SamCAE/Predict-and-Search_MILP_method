@@ -1,0 +1,91 @@
+{
+  "scope": "Upstream commit 02f342af44ba17bfaa92b5c4db0bcbe90fb94151; original files unmodified",
+  "python": "3.12.14 (main, Sep  2 2026, 23:27:36) [GCC 15.3.0]",
+  "packages": {
+    "torch": "2.6.0+cu124",
+    "torch-geometric": "2.6.1",
+    "numpy": "1.26.4",
+    "scipy": "1.13.1",
+    "gurobipy": "13.0.3",
+    "pyscipopt": "6.2.1",
+    "ecole": "0.8.1"
+  },
+  "syntax": {
+    "GCN.py": "OK",
+    "helper.py": "OK",
+    "gurobi.py": "OK",
+    "trainPredictModel.py": "OK",
+    "PredictAndSearch_GRB.py": {
+      "error": "IndentationError",
+      "line": 68,
+      "message": "unexpected indent"
+    },
+    "PredictAndSearch_SCIP.py": {
+      "error": "IndentationError",
+      "line": 67,
+      "message": "unexpected indent"
+    },
+    "FixingStrategy_SCIP.py": {
+      "error": "IndentationError",
+      "line": 67,
+      "message": "unexpected indent"
+    }
+  },
+  "graph": {
+    "variable_order": [
+      "x1",
+      "x2",
+      "x3"
+    ],
+    "actual_dense_adjacency": [
+      [
+        2,
+        2,
+        1
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0
+      ]
+    ],
+    "expected_dense_adjacency": [
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1
+      ]
+    ],
+    "nonfinite_constraint_features": 3
+  },
+  "edge_layer_norm_outputs": [
+    [
+      0.0
+    ],
+    [
+      0.0
+    ],
+    [
+      0.0
+    ]
+  ],
+  "raw_exp_overflows_at_ca_objective_100000": true,
+  "cuda_gpu": "NVIDIA GeForce RTX 4070 Laptop GPU",
+  "upstream_cuda_tensor_constructor": "expected TensorOptions(dtype=float, device=cpu, layout=Strided, requires_grad=false (default), pinned_memory=false (default), memory_format=(nullopt)) (got TensorOptions(dtype=float, device=cuda:0, layout=Strided, requires_grad=false (default), pinned_memory=false (default), memory_format=(nullopt)))",
+  "checkpoint_sha256": "73471504d6e6fb400368230936149a984703d16c8b0607e436289a374b876056"
+}

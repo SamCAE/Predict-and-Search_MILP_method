@@ -1,0 +1,66 @@
+{
+  "reference": "docs/validation/full-size/data/evaluation/gurobi-baseline/results.json",
+  "BKS_source": "Reference incumbent updated by better incumbents in ALL supplied runs (CA maximization)",
+  "bks": {
+    "instance/test/ca_0000.lp": 22806.71301548786,
+    "instance/test/ca_0001.lp": 23359.998155542686
+  },
+  "summary": [
+    {
+      "result": "docs/validation/full-size/data/evaluation/gurobi-baseline/results.json",
+      "instances": 2,
+      "feasible": 2,
+      "mean_objective": 23037.99441867116,
+      "mean_absolute_primal_gap": 45.36116684411354,
+      "mean_relative_primal_gap": 0.001988939257196288
+    },
+    {
+      "result": "docs/validation/full-size/data/evaluation/gurobi-fixing/results.json",
+      "instances": 2,
+      "feasible": 2,
+      "mean_objective": 19261.874826892963,
+      "mean_absolute_primal_gap": 3821.4807586223087,
+      "mean_relative_primal_gap": 0.16536040499410803
+    },
+    {
+      "result": "docs/validation/full-size/data/evaluation/gurobi-search/results.json",
+      "instances": 2,
+      "feasible": 2,
+      "mean_objective": 19348.932533894633,
+      "mean_absolute_primal_gap": 3734.4230516206408,
+      "mean_relative_primal_gap": 0.16155316296432046
+    },
+    {
+      "result": "docs/validation/full-size/data/evaluation/provided-ca-checkpoint/results.json",
+      "instances": 2,
+      "feasible": 2,
+      "mean_objective": 23041.39891759251,
+      "mean_absolute_primal_gap": 41.95666792276279,
+      "mean_relative_primal_gap": 0.0017960903782352161
+    },
+    {
+      "result": "docs/validation/full-size/data/evaluation/scip-baseline/results.json",
+      "instances": 2,
+      "feasible": 2,
+      "mean_objective": 22505.40060631091,
+      "mean_absolute_primal_gap": 577.9549792043654,
+      "mean_relative_primal_gap": 0.02515354801662696
+    },
+    {
+      "result": "docs/validation/full-size/data/evaluation/scip-fixing/results.json",
+      "instances": 2,
+      "feasible": 2,
+      "mean_objective": 18880.820026269706,
+      "mean_absolute_primal_gap": 4202.535559245567,
+      "mean_relative_primal_gap": 0.18174007553411592
+    },
+    {
+      "result": "docs/validation/full-size/data/evaluation/scip-search/results.json",
+      "instances": 2,
+      "feasible": 2,
+      "mean_objective": 21052.754514742417,
+      "mean_absolute_primal_gap": 2030.6010707728565,
+      "mean_relative_primal_gap": 0.08771784302314874
+    }
+  ]
+}

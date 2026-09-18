@@ -1,0 +1,6 @@
+__pycache__/
+.pytest_cache/
+tmp/
+runs/
+*.egg-info/
+docs/validation/full-size/data/

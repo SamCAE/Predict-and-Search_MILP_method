@@ -1,0 +1,14 @@
+name: predict-search-ca
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.12
+  - numpy=1.26.4
+  - scipy=1.13.1
+  - ecole=0.8.2
+  - pyscipopt=6.2.1
+  - scip=10.0.3
+  - pip
+# Install the CUDA PyTorch wheel separately; see scripts/setup_wsl.sh.
+

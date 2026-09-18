@@ -1,0 +1,22 @@
+{
+  "claim_id": "CA_WSL_BOUNDED_IMPLEMENTATION_CHECK",
+  "mathematics": {
+    "assertion_tested": "The added CA pipeline runs on WSL/CUDA; both solvers agree with exhaustive enumeration on a three-variable CA; generated 1500-bid instances produce feasible original-problem incumbents; stable marginal BCE agrees with weighted solution BCE.",
+    "coefficient_domain": "IEEE floating point (float32 GNN; float64 solver/objective arithmetic); binary decision variables",
+    "conventions": "CA maximization; weights softmax(objective/1000); upstream GNN architecture; corrected graph by default; paper CA neighborhood parameters",
+    "inputs": ["Ecole instances: 300 items, 1500 bids, seeds 2700 through 2707", "Three-variable hand-computable model in tests/test_ca_workflow.py"],
+    "bounds": {"train_instances": 4, "valid_instances": 2, "test_instances": 2, "epochs": 2, "solution_pool_cap": 10, "solver_time_limit_seconds": 3, "label_workers": 2, "solver_threads": 1},
+    "non_claims": ["Does not reproduce the paper's numerical results or original data", "Does not validate untested problem families", "Does not certify global optimality of 1500-bid time-limited solves", "CUDA reductions and time-limited solver paths need not be bitwise deterministic"]
+  },
+  "execution_artifacts": ["ca_workflow.py", "GCN.py", "helper.py", "models/CA.pth", "tests/test_ca_workflow.py", "scripts/validate_full_size.py"],
+  "software": [
+    {"name": "Python", "version": "3.12.14"},
+    {"name": "PyTorch", "version": "2.6.0+cu124"},
+    {"name": "PyG", "version": "2.6.1"},
+    {"name": "NumPy", "version": "1.26.4"},
+    {"name": "Gurobi", "version": "13.0.3"},
+    {"name": "SCIP / PySCIPOpt", "version": "10.0.3 / 6.2.1"},
+    {"name": "Ecole conda / Python metadata", "version": "0.8.2 / 0.8.1"}
+  ],
+  "randomness": {"used": true, "generator": "Ecole per-instance seeds 2700-2707; Python/NumPy/PyTorch seed 0 for training/evaluation", "seed": 0}
+}

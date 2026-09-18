@@ -1,0 +1,125 @@
+RUN: /home/ubuntu24/anaconda3/envs/predict-search-ca/bin/python -m pytest tests -q --junitxml docs/validation/full-size/tests.xml
+......................                                                   [100%]
+- generated xml file: /mnt/c/Users/samer/Desktop/Github/Neural_Diving/Predict-and-Search_MILP_method/docs/validation/full-size/tests.xml -
+22 passed in 4.17s
+RUN: /home/ubuntu24/anaconda3/envs/predict-search-ca/bin/python ca_workflow.py generate --root docs/validation/full-size/data --items 300 --bids 1500 --train 4 --valid 2 --test 2 --seed 2700
+Generated 8 instances in docs/validation/full-size/data
+RUN: /home/ubuntu24/anaconda3/envs/predict-search-ca/bin/python ca_workflow.py collect --root docs/validation/full-size/data --workers 2 --time-limit 3 --max-solutions 10
+Set parameter OutputFlag to value 1
+Set parameter LogToConsole to value 0
+Set parameter OutputFlag to value 1
+Set parameter LogToConsole to value 0
+Collected instance/train/ca_0001.lp: 10 solutions
+Collected instance/train/ca_0000.lp: 10 solutions
+Set parameter OutputFlag to value 1
+Set parameter LogToConsole to value 0
+Set parameter OutputFlag to value 1
+Set parameter LogToConsole to value 0
+Collected instance/train/ca_0002.lp: 10 solutions
+Collected instance/train/ca_0003.lp: 10 solutions
+Set parameter OutputFlag to value 1
+Set parameter LogToConsole to value 0
+Set parameter OutputFlag to value 1
+Set parameter LogToConsole to value 0
+Collected instance/valid/ca_0000.lp: 10 solutions
+Collected instance/valid/ca_0001.lp: 10 solutions
+RUN: /home/ubuntu24/anaconda3/envs/predict-search-ca/bin/python ca_workflow.py train --root docs/validation/full-size/data --epochs 2 --batch-size 2 --device cuda
+{'epoch': 0, 'train_loss': 1011.6921997070312, 'valid_loss': 857.831787109375}
+{'epoch': 1, 'train_loss': 784.2391967773438, 'valid_loss': 559.28369140625}
+RUN: /home/ubuntu24/anaconda3/envs/predict-search-ca/bin/python ca_workflow.py evaluate --root docs/validation/full-size/data --name gurobi-baseline --solver gurobi --mode baseline --time-limit 3
+Set parameter OutputFlag to value 1
+Set parameter LogToConsole to value 0
+{'objective': 22715.990681799634, 'status': 9, 'solver_seconds': 3.00665283203125, 'instance': 'instance/test/ca_0000.lp', 'instance_sha256': '65deb30197402801943a2fd5f0317c4a6a580d589e8819fd9aa367dc8c11b973', 'preprocessing_seconds': 1.1569999855964852e-06, 'wall_seconds': 3.0389064679999933, 'selected_variables': 0, 'original_feasible': True, 'hamming_distance': 0}
+Set parameter OutputFlag to value 1
+Set parameter LogToConsole to value 0
+{'objective': 23359.998155542686, 'status': 9, 'solver_seconds': 3.0083539485931396, 'instance': 'instance/test/ca_0001.lp', 'instance_sha256': '677f2ce11425e901d3807383cb2a3dbeeef43876f0acb364ac440bcab566c6a6', 'preprocessing_seconds': 9.149999868895975e-07, 'wall_seconds': 3.0404552250000165, 'selected_variables': 0, 'original_feasible': True, 'hamming_distance': 0}
+RUN: /home/ubuntu24/anaconda3/envs/predict-search-ca/bin/python ca_workflow.py evaluate --root docs/validation/full-size/data --name gurobi-search --solver gurobi --mode search --time-limit 3
+Set parameter OutputFlag to value 1
+Set parameter LogToConsole to value 0
+{'objective': 19553.70847993634, 'status': 9, 'solver_seconds': 3.011854887008667, 'instance': 'instance/test/ca_0000.lp', 'instance_sha256': '65deb30197402801943a2fd5f0317c4a6a580d589e8819fd9aa367dc8c11b973', 'preprocessing_seconds': 0.1862757509999824, 'wall_seconds': 3.2304425919999744, 'selected_variables': 600, 'original_feasible': True, 'hamming_distance': 1.0}
+Set parameter OutputFlag to value 1
+Set parameter LogToConsole to value 0
+{'objective': 19144.156587852925, 'status': 9, 'solver_seconds': 3.006082057952881, 'instance': 'instance/test/ca_0001.lp', 'instance_sha256': '677f2ce11425e901d3807383cb2a3dbeeef43876f0acb364ac440bcab566c6a6', 'preprocessing_seconds': 0.02290121400000089, 'wall_seconds': 3.0594037600000092, 'selected_variables': 600, 'original_feasible': True, 'hamming_distance': 1.0}
+RUN: /home/ubuntu24/anaconda3/envs/predict-search-ca/bin/python ca_workflow.py evaluate --root docs/validation/full-size/data --name gurobi-fixing --solver gurobi --mode fixing --time-limit 3
+Set parameter OutputFlag to value 1
+Set parameter LogToConsole to value 0
+{'objective': 19398.76377965686, 'status': 9, 'solver_seconds': 3.0065860748291016, 'instance': 'instance/test/ca_0000.lp', 'instance_sha256': '65deb30197402801943a2fd5f0317c4a6a580d589e8819fd9aa367dc8c11b973', 'preprocessing_seconds': 0.15650286300001426, 'wall_seconds': 3.1851255530000344, 'selected_variables': 600, 'original_feasible': True, 'hamming_distance': 0.0}
+Set parameter OutputFlag to value 1
+Set parameter LogToConsole to value 0
+{'objective': 19124.98587412907, 'status': 9, 'solver_seconds': 3.032050132751465, 'instance': 'instance/test/ca_0001.lp', 'instance_sha256': '677f2ce11425e901d3807383cb2a3dbeeef43876f0acb364ac440bcab566c6a6', 'preprocessing_seconds': 0.03745816600002172, 'wall_seconds': 3.115803129000028, 'selected_variables': 600, 'original_feasible': True, 'hamming_distance': 0.0}
+RUN: /home/ubuntu24/anaconda3/envs/predict-search-ca/bin/python ca_workflow.py evaluate --root docs/validation/full-size/data --name scip-baseline --solver scip --mode baseline --time-limit 3
+{'objective': 22012.65237196701, 'status': 'timelimit', 'solver_seconds': 3.01136, 'instance': 'instance/test/ca_0000.lp', 'instance_sha256': '65deb30197402801943a2fd5f0317c4a6a580d589e8819fd9aa367dc8c11b973', 'preprocessing_seconds': 7.929999696898449e-07, 'wall_seconds': 3.0268572569999606, 'selected_variables': 0, 'original_feasible': True, 'hamming_distance': 0}
+{'objective': 22998.148840654805, 'status': 'timelimit', 'solver_seconds': 3.022999, 'instance': 'instance/test/ca_0001.lp', 'instance_sha256': '677f2ce11425e901d3807383cb2a3dbeeef43876f0acb364ac440bcab566c6a6', 'preprocessing_seconds': 1.1939999922105926e-06, 'wall_seconds': 3.0515623939999728, 'selected_variables': 0, 'original_feasible': True, 'hamming_distance': 0}
+RUN: /home/ubuntu24/anaconda3/envs/predict-search-ca/bin/python ca_workflow.py evaluate --root docs/validation/full-size/data --name scip-search --solver scip --mode search --time-limit 3
+{'objective': 21282.576864746512, 'status': 'timelimit', 'solver_seconds': 3.011781, 'instance': 'instance/test/ca_0000.lp', 'instance_sha256': '65deb30197402801943a2fd5f0317c4a6a580d589e8819fd9aa367dc8c11b973', 'preprocessing_seconds': 0.16232949999999846, 'wall_seconds': 3.2077232540000296, 'selected_variables': 400, 'original_feasible': True, 'hamming_distance': 10.0}
+{'objective': 20822.932164738322, 'status': 'timelimit', 'solver_seconds': 3.001698, 'instance': 'instance/test/ca_0001.lp', 'instance_sha256': '677f2ce11425e901d3807383cb2a3dbeeef43876f0acb364ac440bcab566c6a6', 'preprocessing_seconds': 0.02769409799998357, 'wall_seconds': 3.051075725999965, 'selected_variables': 400, 'original_feasible': True, 'hamming_distance': 10.0}
+RUN: /home/ubuntu24/anaconda3/envs/predict-search-ca/bin/python ca_workflow.py evaluate --root docs/validation/full-size/data --name scip-fixing --solver scip --mode fixing --time-limit 3
+{'objective': 19268.979010620616, 'status': 'timelimit', 'solver_seconds': 3.028637, 'instance': 'instance/test/ca_0000.lp', 'instance_sha256': '65deb30197402801943a2fd5f0317c4a6a580d589e8819fd9aa367dc8c11b973', 'preprocessing_seconds': 0.15278599599997733, 'wall_seconds': 3.2572362660000067, 'selected_variables': 600, 'original_feasible': True, 'hamming_distance': 0.0}
+{'objective': 18492.661041918796, 'status': 'timelimit', 'solver_seconds': 3.026285, 'instance': 'instance/test/ca_0001.lp', 'instance_sha256': '677f2ce11425e901d3807383cb2a3dbeeef43876f0acb364ac440bcab566c6a6', 'preprocessing_seconds': 0.022659060999956182, 'wall_seconds': 3.101433285999974, 'selected_variables': 600, 'original_feasible': True, 'hamming_distance': 0.0}
+RUN: /home/ubuntu24/anaconda3/envs/predict-search-ca/bin/python ca_workflow.py evaluate --root docs/validation/full-size/data --name provided-ca-checkpoint --checkpoint models/CA.pth --graph-mode upstream --time-limit 3
+Set parameter OutputFlag to value 1
+Set parameter LogToConsole to value 0
+{'objective': 22806.71301548786, 'status': 9, 'solver_seconds': 3.0139200687408447, 'instance': 'instance/test/ca_0000.lp', 'instance_sha256': '65deb30197402801943a2fd5f0317c4a6a580d589e8819fd9aa367dc8c11b973', 'preprocessing_seconds': 0.20232680699996308, 'wall_seconds': 3.2553034119999893, 'selected_variables': 600, 'original_feasible': True, 'hamming_distance': 1.0}
+Set parameter OutputFlag to value 1
+Set parameter LogToConsole to value 0
+{'objective': 23276.08481969716, 'status': 9, 'solver_seconds': 3.0106770992279053, 'instance': 'instance/test/ca_0001.lp', 'instance_sha256': '677f2ce11425e901d3807383cb2a3dbeeef43876f0acb364ac440bcab566c6a6', 'preprocessing_seconds': 0.023103217000027598, 'wall_seconds': 3.0631558790000213, 'selected_variables': 600, 'original_feasible': True, 'hamming_distance': 1.0}
+RUN: /home/ubuntu24/anaconda3/envs/predict-search-ca/bin/python ca_workflow.py summarize --reference docs/validation/full-size/data/evaluation/gurobi-baseline/results.json docs/validation/full-size/data/evaluation/gurobi-baseline/results.json docs/validation/full-size/data/evaluation/gurobi-fixing/results.json docs/validation/full-size/data/evaluation/gurobi-search/results.json docs/validation/full-size/data/evaluation/provided-ca-checkpoint/results.json docs/validation/full-size/data/evaluation/scip-baseline/results.json docs/validation/full-size/data/evaluation/scip-fixing/results.json docs/validation/full-size/data/evaluation/scip-search/results.json --output docs/validation/full-size/summary.json
+[
+  {
+    "result": "docs/validation/full-size/data/evaluation/gurobi-baseline/results.json",
+    "instances": 2,
+    "feasible": 2,
+    "mean_objective": 23037.99441867116,
+    "mean_absolute_primal_gap": 45.36116684411354,
+    "mean_relative_primal_gap": 0.001988939257196288
+  },
+  {
+    "result": "docs/validation/full-size/data/evaluation/gurobi-fixing/results.json",
+    "instances": 2,
+    "feasible": 2,
+    "mean_objective": 19261.874826892963,
+    "mean_absolute_primal_gap": 3821.4807586223087,
+    "mean_relative_primal_gap": 0.16536040499410803
+  },
+  {
+    "result": "docs/validation/full-size/data/evaluation/gurobi-search/results.json",
+    "instances": 2,
+    "feasible": 2,
+    "mean_objective": 19348.932533894633,
+    "mean_absolute_primal_gap": 3734.4230516206408,
+    "mean_relative_primal_gap": 0.16155316296432046
+  },
+  {
+    "result": "docs/validation/full-size/data/evaluation/provided-ca-checkpoint/results.json",
+    "instances": 2,
+    "feasible": 2,
+    "mean_objective": 23041.39891759251,
+    "mean_absolute_primal_gap": 41.95666792276279,
+    "mean_relative_primal_gap": 0.0017960903782352161
+  },
+  {
+    "result": "docs/validation/full-size/data/evaluation/scip-baseline/results.json",
+    "instances": 2,
+    "feasible": 2,
+    "mean_objective": 22505.40060631091,
+    "mean_absolute_primal_gap": 577.9549792043654,
+    "mean_relative_primal_gap": 0.02515354801662696
+  },
+  {
+    "result": "docs/validation/full-size/data/evaluation/scip-fixing/results.json",
+    "instances": 2,
+    "feasible": 2,
+    "mean_objective": 18880.820026269706,
+    "mean_absolute_primal_gap": 4202.535559245567,
+    "mean_relative_primal_gap": 0.18174007553411592
+  },
+  {
+    "result": "docs/validation/full-size/data/evaluation/scip-search/results.json",
+    "instances": 2,
+    "feasible": 2,
+    "mean_objective": 21052.754514742417,
+    "mean_absolute_primal_gap": 2030.6010707728565,
+    "mean_relative_primal_gap": 0.08771784302314874
+  }
+]
+Full-size bounded pipeline passed; no paper-performance claim.
